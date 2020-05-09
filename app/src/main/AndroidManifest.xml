@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="iostudio.in.et">
+    <!--
+         The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
+         Google Maps Android API v2, but you must specify either coarse or fine
+         location permissions for the 'MyLocation' functionality.
+    -->
+
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_UPDATES" /> <!-- Required for foreground services on P+. -->
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.USE_FINGERPRINT" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+
+    <uses-feature
+        android:name="android.hardware.fingerprint" android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera" android:required="true" />
+
+    <application
+        android:name=".app.IOApp"
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:networkSecurityConfig="@xml/network_security_config"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        tools:ignore="GoogleAppIndexingWarning,UnusedAttribute">
+        <activity android:name=".activity.TermsNCondActivity"
+            android:screenOrientation="portrait"/>
+        <activity
+            android:name=".activity.SplashActivity2"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".activity.SplashActivity"
+            android:screenOrientation="portrait">
+
+            <!--
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            -->
+        </activity>
+        <activity
+            android:name=".activity.EnterPinActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.SetPinActivity"
+            android:configChanges="orientation"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TermsActivity"
+            android:screenOrientation="portrait" />
+        <!--
+             The API key for Google Maps-based APIs is defined as a string resource.
+             (See the file "res/values/google_maps_api.xml").
+             Note that the API key is linked to the encryption key used to sign the APK.
+             You need a different API key for each encryption key, including the release key that is used to
+             sign the APK for publishing.
+             You can define the keys for the debug and release targets in src/debug/ and src/release/.
+        -->
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="@string/google_maps_key" />
+        <!-- Set custom default icon. This is used when no icon is set for incoming notification messages.
+     See README(https://goo.gl/l4GJaQ) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_icon"
+            android:resource="@mipmap/ic_launcher" />
+        <!-- Set color used with incoming notification messages. This is used when no color is set for the incoming
+             notification message. See README(https://goo.gl/6BKBk7) for more. -->
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_color"
+            android:resource="@color/colorAccent" />
+        <meta-data
+            android:name="com.google.firebase.messaging.default_notification_channel_id"
+            android:value="@string/default_notification_channel_id" />
+
+        <activity
+            android:name=".activity.MapsActivity"
+            android:label="@string/title_activity_maps" />
+        <activity
+            android:name=".activity.EntryInformationActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name=".activity.CreateNewMeetingActivity1"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateAlwaysHidden|adjustResize" />
+        <activity
+            android:name=".activity.AccountEntriesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ReportActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AccountActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.DeleteActivity"
+            android:label="@string/title_activity_delete"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".activity.ProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.PastMeetingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OtherLocationMeetingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.RescheduleCancelMeetingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.AddMeetingNoteActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MeetingInformationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ContactDetailsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MenuDialogActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/AppDialogThemeBaseActivity" />
+        <activity
+            android:name=".activity.DashboardActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustPan|stateAlwaysHidden" />
+        <activity
+            android:name=".activity.PhoneNumberActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.OtpActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LeadActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CreateNewContactActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.MeetingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.LeaveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CreateNewMeetingActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.ExpensesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.TourActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CreateNewLeaveActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".activity.CreateNewExpenseActivity"
+            android:screenOrientation="portrait" /> <!-- Foreground services in Q+ require type. android:foregroundServiceType="location" -->
+        <service
+            android:name=".location.LocationUpdatesService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".location.LocationUpdatesBroadcastReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="iostudio.in.et.location.action.PROCESS_UPDATES" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".location.NetworkChangeReceiver"
+            android:label="NetworkChangeReceiver">
+            <intent-filter>
+                <action
+                    android:name="android.net.conn.CONNECTIVITY_CHANGE"
+                    tools:ignore="BatteryLife" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+            </intent-filter>
+        </receiver>
+        <provider
+            android:name="androidx.core.content.FileProvider"
+            android:authorities="${applicationId}.provider"
+            android:exported="false"
+            android:grantUriPermissions="true">
+            <meta-data
+                android:name="android.support.FILE_PROVIDER_PATHS"
+                android:resource="@xml/file_paths">
+            </meta-data>
+        </provider>
+        <service
+            android:name=".app.MyFirebaseMessagingService"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT" />
+            </intent-filter>
+        </service>
+    </application>
+
+</manifest>

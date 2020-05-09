@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".activity.CreateNewLeaveActivity">
+
+    <include
+        android:id="@+id/appbar_layout"
+        layout="@layout/toolbar_layout_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:padding="@dimen/fifteen_dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/leave_for"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold" />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <androidx.appcompat.widget.AppCompatSpinner
+                    android:id="@+id/spinner_leave"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/seven_dp"
+                    android:paddingLeft="@dimen/five_dp"
+                    android:background="@color/pinkish_grey"
+                    android:minHeight="@dimen/fourty_dp"
+                    android:spinnerMode="dialog" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:clickable="false"
+                    android:layout_alignTop="@+id/spinner_leave"
+                    android:layout_alignBottom="@+id/spinner_leave"
+                    android:layout_marginRight="@dimen/ten_dp"
+                    android:layout_marginEnd="@dimen/ten_dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_alignParentEnd="true"
+                    android:src="@drawable/spinner_down_arrow" />
+            </RelativeLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fifteen_dp"
+                android:text="@string/leave_reason"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_leave_reason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/seven_dp"
+                android:background="@color/pinkish_grey"
+                android:hint="@string/hint_leave_reason"
+                android:inputType="textCapSentences|textMultiLine"
+                android:minHeight="@dimen/fourty_dp"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingLeft="@dimen/fifteen_dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dark_grey"
+                android:textSize="@dimen/medium_text_size" />
+
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fifteen_dp"
+                android:text="@string/leave_period"
+                android:textColor="@color/textColorPrimary"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_from"
+                android:layout_width="match_parent"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/seven_dp"
+                android:background="@color/pinkish_grey"
+                android:drawableLeft="@drawable/calendar_icon"
+                android:drawableStart="@drawable/calendar_icon"
+                android:drawablePadding="@dimen/ten_dp"
+                android:hint="@string/hint_from"
+                android:minHeight="@dimen/fourty_dp"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingLeft="@dimen/fifteen_dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dark_grey"
+                android:textSize="@dimen/medium_text_size" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/ten_dp"
+                android:background="@color/pinkish_grey"
+                android:drawableLeft="@drawable/calendar_icon"
+                android:drawablePadding="@dimen/ten_dp"
+                android:hint="@string/hint_to"
+                android:minHeight="@dimen/fourty_dp"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:editable="false"
+                android:focusable="false"
+                android:focusableInTouchMode="true"
+                android:paddingLeft="@dimen/fifteen_dp"
+                android:textColor="@color/black"
+                android:textColorHint="@color/dark_grey"
+                android:textSize="@dimen/medium_text_size" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnSubmit"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/fifty_five_dp"
+                android:layout_marginTop="@dimen/twenty_dp"
+                android:layout_marginBottom="@dimen/five_dp"
+                android:minWidth="@dimen/one_fifty_dp"
+                android:text="@string/submit"
+                android:letterSpacing="0"
+                android:textAllCaps="false"
+                android:textSize="@dimen/medium_text_size"
+                android:textStyle="bold"
+                app:cornerRadius="@dimen/twenty_dp"
+                tools:ignore="UnusedAttribute" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

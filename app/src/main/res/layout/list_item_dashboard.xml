@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/two_dp"
+    android:background="@color/white"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/fifteen_dp"
+    android:paddingTop="@dimen/fifteen_dp"
+    android:paddingRight="@dimen/fifteen_dp"
+    app:cardElevation="@dimen/one_dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewTitle"
+        app:layout_constraintEnd_toStartOf="@+id/iv_next"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/medium_text_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="My Orders" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/textViewSubTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="My Orders"
+        android:layout_marginTop="@dimen/two_dp"
+        android:textColor="@color/textColorSecondaryDark"
+        android:textSize="@dimen/small_text_size"
+        app:layout_constraintEnd_toStartOf="@+id/iv_next"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewTitle" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:layout_width="@dimen/fifteen_dp"
+        android:layout_height="@dimen/fifteen_dp"
+        android:id="@+id/iv_next"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/right_arrow"/>
+    <include
+        layout="@layout/layout_divider"
+        android:layout_width="0dp"
+        android:layout_height="@dimen/one_dp"
+        android:layout_marginTop="@dimen/fifteen_dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewSubTitle" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

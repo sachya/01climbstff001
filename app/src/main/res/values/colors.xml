@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#9C71BE</color>
+    <color name="colorPrimaryDark">#4E395F</color>
+    <color name="colorPrimaryDark_">#835ea0</color>
+    <color name="colorAccent">#9C71BE</color>
+
+
+    <color name="textColorPrimary">#000000</color>
+    <color name="textColorSecondaryMid">#8c8d8e</color>
+    <color name="textColorSecondary">#A2A2A2</color>
+    <color name="textColorSecondary_">#999999</color>
+    <color name="textColorSecondaryDark">#393e46</color>
+    <color name="textColorGreen">#4EA018</color>
+    <color name="textColorGreen_">#449636</color>
+    <color name="textColorGreenRipple">#caf7c3</color>
+    <color name="bg_color">#f7f8ff</color>
+    <color name="bg_color_">#F2F4F6</color>
+
+
+    <color name="divider_light">#f7f7f7</color>
+    <color name="divider">#e6e6e6</color>
+    <color name="light_blue">#fafdff</color>
+    <color name="off_white">#F6F6F6</color>
+    <color name="off_white_dark">#e3e3e3</color>
+    <color name="french_blue">#4261a8</color>
+    <color name="pinkish_grey">#f3f3f3</color>
+    <color name="pinkish_grey2">#e2e0e0</color>
+    <color name="pinkish_grey1">#CCCCCC</color>
+    <color name="dark_grey">#999999</color>
+    <color name="line_grey">#1e000000</color>
+    <color name="dark_grey_alpha">#28000000</color>
+    <color name="text_red">#ff3333</color>
+    <color name="cerulean">#0078ba</color>
+    <color name="tangerine">#ff9000</color>
+    <color name="brownish_grey">#666666</color>
+
+    <color name="fontColorPrimary">@color/black</color>
+    <color name="fontColorSecondaryDark">#888888</color>
+    <color name="fontColorSecondary">#A2A2A2</color>
+    <color name="fontColorLightBlack">#202e40</color>
+    <color name="fontColorLightBlue">#909ea5</color>
+
+
+    <color name="black">#000000</color>
+    <color name="black_alpha">#70000000</color>
+    <color name="green_alpha">#5500cc99</color>
+    <color name="white">#ffffff</color>
+    <color name="shadow">#0c000000</color>
+    <color name="card_bg">#f4f5f6</color>
+    <color name="white_alpha">#99ffffff</color>
+    <color name="black_alpha_g">#28000000</color>
+    <color name="white_full">#E6ffffff</color>
+    <color name="off_white_full">#FAF6F6F6</color>
+    <color name="transparent">#00000000</color>
+    <color name="widget_labelled_spinner_error">@color/colorAccent</color>
+    <color name="box">#50000000</color>
+    <color name="bg_color_section">#F6F4F1</color>
+</resources>

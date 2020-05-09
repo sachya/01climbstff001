@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "150625868661",
+    "firebase_url": "https://climbstaff-8d20a.firebaseio.com",
+    "project_id": "climbstaff-8d20a",
+    "storage_bucket": "climbstaff-8d20a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:150625868661:android:238e8a7cc52aa8d162513c",
+        "android_client_info": {
+          "package_name": "iostudio.in.et"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "150625868661-jbbhsmdd5m81rcpkov56ognmjcauge35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBjnsrahLP7ek2Y_hDcs2qdz0oH83IlaaQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "150625868661-jbbhsmdd5m81rcpkov56ognmjcauge35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

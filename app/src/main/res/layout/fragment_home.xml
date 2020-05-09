@@ -1,0 +1,468 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_root_dashboard"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.DashboardActivity2">
+
+    <LinearLayout
+        android:id="@+id/ll_header"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@color/colorPrimary"
+        android:orientation="horizontal"
+        android:padding="@dimen/fifteen_dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/iv_logo"
+            android:layout_width="@dimen/thirty_five_dp"
+            android:layout_height="@dimen/thirty_five_dp"
+            android:layout_gravity="start"
+            android:contentDescription="@null"
+            android:src="@drawable/ic_climbstaff"
+            android:tint="@color/white" />
+
+        <Space
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/status_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/ten_dp"
+            android:id="@+id/ll_status"
+            android:paddingTop="@dimen/five_dp"
+            android:animateLayoutChanges="true"
+            android:paddingRight="@dimen/ten_dp"
+            android:paddingBottom="@dimen/five_dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_duty_status"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold|italic"
+                android:text="@string/tap_to_start" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/iv_location"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="@dimen/ten_dp"
+                android:src="@drawable/ic_navigation_filled" />
+
+            <androidx.appcompat.widget.SwitchCompat
+                android:id="@+id/switchStatus"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_centerVertical="true"
+                android:layout_marginEnd="@dimen/fifteen_dp"
+                android:layout_marginRight="@dimen/fifteen_dp"
+                android:visibility="gone" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ll_header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/one_fifty_dp"
+                android:background="@drawable/purple_circle"
+                android:gravity="end"
+                android:orientation="vertical"
+                android:paddingRight="@dimen/fifteen_dp">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/fifteen_dp"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/thirty_text_size"
+                    tools:text="Hi, Anant" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_quote"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/five_dp"
+                    android:text="@string/remember_to_use_sheet"
+                    android:textColor="@color/white_full"
+                    android:textSize="@dimen/small_text_size"
+                    android:textStyle="italic" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:descendantFocusability="blocksDescendants"
+                android:orientation="vertical"
+                android:padding="@dimen/ten_dp">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    app:cardBackgroundColor="@color/card_bg"
+                    app:cardCornerRadius="@dimen/ten_dp"
+                    app:cardElevation="@dimen/three_dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:paddingTop="@dimen/ten_dp"
+                        android:paddingBottom="@dimen/ten_dp"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="33.33"
+                            android:gravity="center"
+                            android:id="@+id/ll_meeting"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:id="@+id/tv_meeting_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="8"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="@dimen/xvery_large_text_size" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/seven_dp"
+                                android:text="@string/meetings"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="@dimen/fifteen_text_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="33.33"
+                            android:gravity="center"
+                            android:id="@+id/ll_add_meeting"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="@dimen/thirty_eight_dp"
+                                android:layout_height="@dimen/thirty_eight_dp"
+                                android:src="@drawable/ic_group_add"
+                                app:tint="@color/md_blue_400" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/seven_dp"
+                                android:text="@string/add_meeting"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="@dimen/fifteen_text_size" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="33.33"
+                            android:gravity="center"
+                            android:id="@+id/ll_add_entry"
+                            android:orientation="vertical">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="@dimen/thirty_eight_dp"
+                                android:layout_height="@dimen/thirty_eight_dp"
+                                android:src="@drawable/add_circle"
+                                app:tint="@color/text_red" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/seven_dp"
+                                android:text="@string/account_entry"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="@dimen/fifteen_text_size" />
+
+                        </LinearLayout>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/ten_dp"
+                    app:cardElevation="@dimen/three_dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="61"
+                            android:background="@color/card_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/eighteen_dp"
+                            android:paddingBottom="@dimen/eighteen_dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total_ta_da"
+                                android:id="@+id/tv_ta_label"
+                                android:textStyle="bold"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="@dimen/medium_text_size" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/fifteen_dp"
+                                android:layout_marginLeft="@dimen/fifteen_dp"
+                                android:text="@string/apr"
+                                android:id="@+id/tv_in_month"
+                                android:textColor="@color/md_green_700"
+                                android:textSize="@dimen/large_text_size"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="39"
+                            android:background="@color/white"
+                            android:gravity="end|center_vertical"
+                            android:orientation="vertical"
+                            android:paddingEnd="@dimen/ten_dp"
+                            android:paddingRight="@dimen/ten_dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="Rs.13,000"
+                                android:id="@+id/tv_ta_da_amt"
+                                android:textColor="@color/md_green_700"
+                                android:textSize="@dimen/large_text_size" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/ten_dp"
+                    app:cardElevation="@dimen/three_dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="61"
+                            android:background="@color/card_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/eighteen_dp"
+                            android:paddingBottom="@dimen/eighteen_dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/total_expense"
+                                android:id="@+id/tv_exp_label"
+                                android:textStyle="bold"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="@dimen/medium_text_size" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/fifteen_dp"
+                                android:layout_marginLeft="@dimen/fifteen_dp"
+                                android:text="@string/apr"
+                                android:id="@+id/tv_expense_month"
+                                android:textColor="@color/text_red"
+                                android:textSize="@dimen/large_text_size"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="39"
+                            android:background="@color/white"
+                            android:gravity="end|center_vertical"
+                            android:orientation="vertical"
+                            android:paddingEnd="@dimen/ten_dp"
+                            android:paddingRight="@dimen/ten_dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="Rs.33,000"
+                                android:id="@+id/tv_expense_amt"
+                                android:textColor="@color/text_red"
+                                android:textSize="@dimen/large_text_size" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/ten_dp"
+                    app:cardElevation="@dimen/three_dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:weightSum="100">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="61"
+                            android:background="@color/card_bg"
+                            android:gravity="center"
+                            android:orientation="horizontal"
+                            android:paddingTop="@dimen/fifteen_dp"
+                            android:paddingBottom="@dimen/fifteen_dp">
+
+                            <androidx.appcompat.widget.AppCompatImageView
+                                android:layout_width="@dimen/thirty_five_dp"
+                                android:layout_height="@dimen/thirty_five_dp"
+                                android:src="@drawable/car"
+                                app:tint="@color/textColorSecondaryDark" />
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="@dimen/fifteen_dp"
+                                android:layout_marginLeft="@dimen/fifteen_dp"
+                                android:text="@string/km_today"
+                                android:textStyle="bold"
+                                android:textColor="@color/textColorSecondaryDark"
+                                android:textSize="@dimen/medium_text_size" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="39"
+                            android:background="@color/white"
+                            android:gravity="end|center_vertical"
+                            android:orientation="vertical"
+                            android:paddingEnd="@dimen/ten_dp"
+                            android:paddingRight="@dimen/ten_dp">
+
+                            <androidx.appcompat.widget.AppCompatTextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                tools:text="15 KM"
+                                android:id="@+id/tv_km"
+                                android:textColor="@color/text_red"
+                                android:textSize="@dimen/large_text_size" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    app:cardBackgroundColor="@color/white"
+                    app:cardCornerRadius="@dimen/ten_dp"
+                    app:cardElevation="@dimen/three_dp"
+                    app:cardUseCompatPadding="true">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:padding="@dimen/fifteen_dp">
+
+                        <androidx.appcompat.widget.AppCompatImageView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:src="@drawable/ic_location" />
+
+                        <androidx.appcompat.widget.AppCompatTextView
+                            android:id="@+id/tv_location"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="@dimen/fifteen_dp"
+                            android:layout_marginLeft="@dimen/fifteen_dp"
+                            android:textStyle="italic"
+                            tools:text="31, Saraswat Nagar, Bhandup, Mumbai"
+                            android:textColor="@color/textColorPrimary" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerViewDashboard"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    tools:listitem="@layout/list_item_dashboard" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textViewAppVersion"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginTop="@dimen/twenty_dp"
+                    android:gravity="center"
+                    android:text="App version, V1.0"
+                    android:visibility="gone"
+                    android:textColor="@color/md_grey_800"
+                    android:textSize="@dimen/small_text_size" />
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

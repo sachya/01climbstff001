@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/ll_meeting_notes"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="@dimen/fifteen_dp"
+    android:background="@drawable/meeting_notes_bg"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/twenty_dp"
+    android:paddingTop="@dimen/ten_dp"
+    android:paddingRight="@dimen/twenty_dp"
+    android:paddingBottom="@dimen/ten_dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@color/textColorSecondaryDark"
+        android:textSize="@dimen/normal_text_size"
+        tools:text="The delear is looking for low price for our products" />
+</LinearLayout>

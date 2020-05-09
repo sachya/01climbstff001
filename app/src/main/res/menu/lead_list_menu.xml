@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/action_edit_lead"
+        android:title="@string/remove_edit_lead" />
+    <item
+        android:id="@+id/action_schedule_meeting"
+        android:title="@string/schedule_meeting" />
+    <item
+        android:id="@+id/action_mark_as_imp"
+        android:title="@string/mark_as_imp" />
+
+
+</menu>

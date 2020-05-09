@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/twenty_dp">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/iv_logo"
+        android:layout_width="@dimen/sixty_dp"
+        android:layout_height="@dimen/sixty_dp"
+        android:layout_marginTop="@dimen/thirty_dp"
+        android:src="@drawable/ic_climbstaff"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_welcome_login"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/twelve_dp"
+        android:text="@string/set_pin_title"
+        android:textColor="@color/textColorPrimary"
+        android:textSize="@dimen/large_text_size"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_logo" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_welcome_login_desc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/twelve_dp"
+        android:text="@string/set_pin_caption"
+        android:textColor="@color/textColorSecondary"
+        android:textSize="@dimen/normal_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_welcome_login" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/tv_enter_pin"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/twelve_dp"
+        android:text="@string/set_pin_enter_4_digit"
+        android:textColor="@color/textColorSecondary"
+        android:textSize="@dimen/fifteen_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_welcome_login_desc" />
+
+
+    <com.mukesh.OtpView
+        android:id="@+id/otp_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/ten_dp"
+        android:layout_marginBottom="@dimen/fifteen_dp"
+        android:background="@color/white"
+        android:inputType="numberPassword"
+        android:itemBackground="@color/white"
+        android:textColor="@color/textColorPrimary"
+        android:textColorHint="@color/textColorSecondary"
+        app:cursorColor="@color/textColorPrimary"
+        app:hideLineWhenFilled="false"
+        app:itemBackground="@color/white"
+        app:itemCount="4"
+        app:itemSpacing="@dimen/five_dp"
+        app:itemWidth="@dimen/fifty_five_dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_enter_pin"
+        app:lineColor="@color/textColorSecondary"
+        app:lineWidth="@dimen/one_dp"
+        app:viewType="line" />
+
+    <androidx.appcompat.widget.SwitchCompat
+        android:id="@+id/switch_enable_fingerprint"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/twenty_dp"
+        android:text="@string/enable_finger_print"
+        android:textColor="@color/textColorSecondary"
+        android:textSize="@dimen/fifteen_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otp_view"
+        android:visibility="gone"/>
+
+
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btn_submit"
+        android:layout_width="wrap_content"
+        android:layout_height="@dimen/fifty_five_dp"
+        android:minWidth="@dimen/one_twenty_dp"
+        android:text="@string/submit"
+        android:textAllCaps="false"
+        android:textSize="@dimen/medium_text_size"
+        android:textStyle="bold"
+        android:letterSpacing="0"
+        app:cornerRadius="@dimen/twenty_dp"
+        app:layout_constraintBottom_toTopOf="@+id/ll_login"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/otp_view"
+        tools:targetApi="lollipop" />
+
+    <LinearLayout
+        android:id="@+id/ll_login"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:paddingTop="@dimen/twenty_dp"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/terms_desc"
+            android:textSize="@dimen/small_text_size" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/three_dp"
+            android:layout_marginBottom="@dimen/fifteen_dp"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_terms"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/terms_n_conditions_policy"
+                android:textSize="@dimen/small_text_size" />
+        </LinearLayout>
+
+        <include layout="@layout/layout_divider" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/fifteen_dp"
+            android:text="@string/company_name_title"
+            android:textSize="@dimen/small_text_size" />
+
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

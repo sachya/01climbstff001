@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activity.RescheduleCancelMeetingActivity">
+
+    <include
+        android:id="@+id/appbar_layout"
+        layout="@layout/toolbar_layout_color"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appbar_layout">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:descendantFocusability="afterDescendants"
+            android:orientation="vertical"
+            android:padding="@dimen/fifteen_dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingLeft="@dimen/fifteen_dp"
+                android:paddingTop="@dimen/ten_dp"
+                android:paddingBottom="@dimen/ten_dp"
+                android:weightSum="100">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="40"
+                    android:text="@string/meeting_with"
+                    android:textColor="@color/textColorSecondaryMid"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="italic" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tv_meeting_with"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="60"
+                    android:paddingStart="@dimen/fifteen_dp"
+                    android:paddingLeft="@dimen/fifteen_dp"
+                    tools:text="Shree Ram"
+                    android:textColor="@color/textColorSecondaryDark"
+                    android:textSize="@dimen/normal_text_size"
+                    android:textStyle="bold" />
+            </LinearLayout>
+
+            <include layout="@layout/layout_divider" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_add_meeting_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty_dp"
+                android:paddingStart="@dimen/fifteen_dp"
+                android:paddingLeft="@dimen/fifteen_dp"
+                android:text="@string/add_reason"
+                android:textColor="@color/textColorSecondaryMid"
+                android:textSize="@dimen/normal_text_size"
+                android:textStyle="bold" />
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/et_add_meeting_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/five_dp"
+                android:background="@drawable/edittext_bg"
+                android:hint="@string/hint_write_reason"
+                android:inputType="textMultiLine"
+                android:minLines="3"
+                android:paddingLeft="@dimen/fifteen_dp"
+                android:paddingRight="@dimen/fifteen_dp"
+                android:textColor="@color/textColorSecondaryDark"
+                android:textSize="@dimen/medium_text_size" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/tv_header_meeeting_note"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/twenty_five_dp"
+                android:layout_marginBottom="@dimen/fifteen_dp"
+                android:background="@color/md_blue_grey_50"
+                android:gravity="center"
+                android:paddingTop="@dimen/two_dp"
+                android:paddingBottom="@dimen/two_dp"
+                android:text="@string/reschedule_meeting"
+                android:textColor="@color/textColorSecondaryDark"
+                android:textSize="@dimen/small_text_size" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:drawableLeft="@drawable/calendar_icon"
+                    android:drawablePadding="@dimen/ten_dp"
+                    android:id="@+id/tv_date"
+                    tools:text="28 April 2019"
+                    android:textColor="@color/textColorSecondaryDark"
+                    android:textSize="@dimen/fifteen_text_size" />
+
+                <Space
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_reschedule"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:letterSpacing="0"
+                    android:text="@string/reschedule_meeting"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/fifteen_text_size"
+                    app:cornerRadius="@dimen/fifty_dp"
+                    tools:ignore="UnusedAttribute" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/fifteen_dp"
+                android:layout_marginBottom="@dimen/fifteen_dp"
+                android:background="@color/md_blue_grey_50"
+                android:gravity="center"
+                android:paddingTop="@dimen/two_dp"
+                android:paddingBottom="@dimen/two_dp"
+                android:text="@string/cancel_meeting"
+                android:textColor="@color/textColorSecondaryDark"
+                android:textSize="@dimen/small_text_size" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cancel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:letterSpacing="0"
+                android:text="@string/cancel_meeting"
+                android:layout_gravity="center"
+                app:backgroundTint="@color/md_red_300"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="@dimen/medium_text_size"
+                app:cornerRadius="@dimen/fifty_dp"
+                tools:targetApi="lollipop" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
