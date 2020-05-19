@@ -1,6 +1,8 @@
 package iostudio.in.et.activity;
 
 import android.Manifest;
+import android.app.NotificationChannel;
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.ComponentName;
 import android.content.Context;
@@ -10,6 +12,7 @@ import android.content.IntentSender;
 import android.content.ServiceConnection;
 import android.content.SharedPreferences;
 import android.location.Location;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.IBinder;
 import android.preference.PreferenceManager;
@@ -54,11 +57,13 @@ import org.json.JSONObject;
 
 import iostudio.in.et.R;
 import iostudio.in.et.adapter.DashboardPagerAdapter;
+import iostudio.in.et.fragment.HomeFragment;
 import iostudio.in.et.location.LocationUpdatesService;
 import iostudio.in.et.pref.IOPref;
 import iostudio.in.et.retrofit.api.AppRetrofitCallback;
 import iostudio.in.et.retrofit.response.Profile;
 import iostudio.in.et.retrofit.response.ProfileData;
+import iostudio.in.et.utility.CircularImageView;
 import iostudio.in.et.utility.Constant;
 import iostudio.in.et.utility.NetworkUtil;
 import iostudio.in.et.utility.Utility;
@@ -93,7 +98,7 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
     // Tracks the bound state of the service.
     private boolean mBound = false;
     DrawerLayout drawer;
-    ImageView iv_logo;
+    CircularImageView iv_logo;
     AppCompatTextView tv_title, tvTermsAndPolicy;
     AppCompatTextView tv_desc, tv_company;
 
@@ -169,6 +174,10 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
                                             IOPref.getInstance().saveString(context,IOPref.PreferenceKey.profileImage, data.getImage());
                                         }
 
+                                        if (!TextUtils.isEmpty(data.getCompany_id())) {
+                                            IOPref.getInstance().saveString(context,IOPref.PreferenceKey.companyImage, data.getCompany_id());
+                                        }
+
                                         if (!TextUtils.isEmpty(data.getCompany())) {
                                             IOPref.getInstance().saveString(context,IOPref.PreferenceKey.company, data.getCompany());
                                         }
@@ -178,6 +187,7 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
+                                showMessage(getString(R.string.something_went_wrong));
                             }
 
                         }
@@ -193,6 +203,7 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
                     public void onFailure(Call call, Throwable t) {
                         super.onFailure(call, t);
                         Log.e("onFailure: ", " :" + t.getMessage());
+                        showMessage(getString(R.string.something_went_wrong));
                     }
                 });
 
@@ -209,10 +220,26 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
 
     private void setprofileData() {
         String profileUrl = IOPref.getInstance().getString(context, IOPref.PreferenceKey.profileImage, "");
-        if (!TextUtils.isEmpty(profileUrl)) {
-            iv_logo.setBackground(null);
-            Picasso.get().load(profileUrl).into(iv_logo);
+      /*  if (!TextUtils.isEmpty(profileUrl)) {
+
+            Picasso.get().load(profileUrl)
+                    .placeholder(R.drawable.defalut_user)
+                    .into(iv_logo);
         }
+        else
+        {
+            Picasso.get().load(R.drawable.defalut_user)
+                    .placeholder(R.drawable.defalut_user)
+                    .into(iv_logo);
+        }*/
+
+        String companyid = IOPref.getInstance().getString(context, IOPref.PreferenceKey.companyImage, "");
+      String companyurl = "https://climbstaff.com/uploads/company/"+companyid+"/profile/image.jpg";
+     //   https://climbstaff.com/uploads/company/1/profile/image.jpg
+        Picasso.get().load(companyurl)
+                .placeholder(R.drawable.defalut_user)
+                .into(iv_logo);
+
         String name = IOPref.getInstance().getString(context, IOPref.PreferenceKey.name, "");
         if (!TextUtils.isEmpty(name)){
             tv_title.setText(name);
@@ -278,7 +305,7 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
         };
 
         ss.setSpan(span1, 0, 18, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span2, 21, 34, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span2, 21, 35, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         tvTermsAndPolicy.setText(ss);
         tvTermsAndPolicy.setMovementMethod(LinkMovementMethod.getInstance());
@@ -395,6 +422,25 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
         mService.removeLocationUpdates();
     }
 
+    public void displayDuty() {
+        String CHANNEL_ID = "channel_01";
+        int NOTIFICATION_ID = 12345678;
+       NotificationManager mNotificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+
+        // Android O requires a Notification Channel.
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            CharSequence name = getString(R.string.app_name);
+            // Create the channel for the notification
+            NotificationChannel mChannel =
+                    new NotificationChannel(CHANNEL_ID, name, NotificationManager.IMPORTANCE_DEFAULT);
+
+            // Set the Notification Channel for the Notification Manager.
+            mNotificationManager.createNotificationChannel(mChannel);
+        }
+        mNotificationManager.notify(NOTIFICATION_ID, mService.getNotification());
+    }
+
+
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         // Update the buttons state depending on whether location updates are being requested.
@@ -426,9 +472,11 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
                     drawer.closeDrawers();
                     break;*/
                 case R.id.ll_setting:
-                    intent = new Intent(context, EnterPinActivity.class);
+                    /*intent = new Intent(context, EnterPinActivity.class);
                     intent.putExtra("IS_UPDATE_PIN", true);
                     startActivity(intent);
+*/
+                    startActivity(new Intent(context, SetPinActivity.class));
                     drawer.closeDrawers();
                     break;
             }
@@ -516,6 +564,7 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
                         case LocationSettingsStatusCodes.SUCCESS:
                             // All location settings are satisfied. The client can initialize location
                             // requests here.
+                            Log.e("error","gpsactive");
 
                             break;
                         case LocationSettingsStatusCodes.RESOLUTION_REQUIRED:
@@ -628,5 +677,23 @@ public class DashboardActivity extends BaseActivity implements SharedPreferences
     protected void onDestroy() {
         super.onDestroy();
         Log.e(TAG, " initData onDestroy");
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+      Log.e("activity","sucess");
+      if (requestCode==1000&&resultCode==RESULT_CANCELED)
+      {
+          HomeFragment.gpsConnectionListner.onGPSCallback(context,"disconnect");
+      }
+      else if (requestCode==1000&&resultCode== RESULT_OK)
+      {
+          if (HomeFragment.gpsConnectionListner!=null)
+          {
+              HomeFragment.gpsConnectionListner.onGPSCallback(context,"connect");
+          }
+      }
     }
 }

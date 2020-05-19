@@ -272,11 +272,13 @@ public class MeetingInformationActivity extends BaseActivity implements View.OnC
                                 showMessage(jObjError.getString("message"));
                                 hideProgressDialogSimple();
                             } catch (Exception e) {
-                                showMessage(e.getMessage());
+                              //  showMessage(e.getMessage());
+                                showMessage(getString(R.string.something_went_wrong));
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -293,6 +295,7 @@ public class MeetingInformationActivity extends BaseActivity implements View.OnC
 
                         } catch (Exception e) {
                             e.printStackTrace();
+                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -307,6 +310,7 @@ public class MeetingInformationActivity extends BaseActivity implements View.OnC
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
+                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
 

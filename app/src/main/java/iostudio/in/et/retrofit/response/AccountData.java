@@ -13,7 +13,9 @@ public class AccountData implements Parcelable {
     private String name;
     private String amount;
     private String date;
+    private String img_date;
     private ArrayList<Note> notes;
+    private String image ;
 
 
     private String quote;
@@ -35,8 +37,10 @@ public class AccountData implements Parcelable {
         name = in.readString();
         amount = in.readString();
         date = in.readString();
+        img_date = in.readString();
         type_id = in.readString();
         type_name = in.readString();
+        image = in.readString();
     }
 
     public static final Creator<AccountData> CREATOR = new Creator<AccountData>() {
@@ -94,8 +98,10 @@ public class AccountData implements Parcelable {
         dest.writeString(name);
         dest.writeString(amount);
         dest.writeString(date);
+        dest.writeString(img_date);
         dest.writeString(type_id);
         dest.writeString(type_name);
+        dest.writeString(image);
     }
 
     public ArrayList<Note> getNotes() {
@@ -184,5 +190,21 @@ public class AccountData implements Parcelable {
 
     public void setQuote(String quote) {
         this.quote = quote;
+    }
+
+    public String getImg_date() {
+        return img_date;
+    }
+
+    public void setImg_date(String img_date) {
+        this.img_date = img_date;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

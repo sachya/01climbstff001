@@ -9,7 +9,9 @@ import com.google.gson.TypeAdapter;
 
 import java.io.IOException;
 
+import iostudio.in.et.R;
 import iostudio.in.et.retrofit.response.CommonResponse;
+import iostudio.in.et.utility.Utility;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -47,6 +49,7 @@ public abstract class AppRetrofitCallback<S> implements Callback {
     public void onFailure(Call call, Throwable t) {
         try {
             Log.e("onFailure"," t :"+t.getMessage());
+
             if (t instanceof HttpException) {
                 ResponseBody body = ((HttpException) t).response().errorBody();
                 Gson gson = new Gson();

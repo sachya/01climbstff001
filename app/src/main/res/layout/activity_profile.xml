@@ -35,12 +35,40 @@
                 android:layout_marginTop="@dimen/ten_dp"
                 android:orientation="horizontal">
 
+                <FrameLayout
+
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    >
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/iv_logo"
+                        android:src="@drawable/defult_icon"
+                        android:layout_height="250px"
+                        android:layout_gravity="center"
+                        android:scaleType="centerCrop"
+                        android:layout_width="250px"/>
+
+                    <ImageView
+                        android:id="@+id/iv_edit"
+                        android:layout_height="40dp"
+                        android:layout_width="35dp"
+                        android:src="@drawable/ic_menu_camera"
+                        android:tint="@color/colorAccent"
+
+                        android:layout_gravity="bottom|right"/>
+
+
+                </FrameLayout>
+
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/iv_logo"
+
                     android:layout_width="@dimen/eighty_dp"
                     android:layout_height="@dimen/eighty_dp"
                     tools:background="@drawable/purple_circle"
-                    tools:src="@drawable/contact" />
+                    tools:src="@drawable/contact"
+                    android:visibility="gone"/>
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:layout_width="match_parent"
@@ -183,6 +211,22 @@
                     android:textSize="@dimen/normal_text_size"
                     android:textStyle="bold" />
             </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/delete_image"
+                android:textAllCaps="false"
+                android:letterSpacing="0"
+                android:minHeight="@dimen/fifty_dp"
+                android:textColor="@color/white"
+                android:textSize="@dimen/medium_text_size"
+                android:id="@+id/btn_delete"
+                android:layout_marginTop="15dp"
+                app:backgroundTint="@color/md_red_400"
+                android:visibility="gone"
+                app:cornerRadius="@dimen/fifty_dp" />
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>

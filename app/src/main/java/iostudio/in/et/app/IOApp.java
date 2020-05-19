@@ -27,6 +27,7 @@ import java.util.Map;
 
 import io.github.sac.BasicListener;
 import io.github.sac.Socket;
+import iostudio.in.et.fragment.HomeFragment;
 
 
 /**
@@ -93,10 +94,18 @@ public class IOApp extends Application {
 
                 public void onConnected(Socket socket, Map<String, List<String>> headers) {
                     System.out.println("Connected to endpoint");
+                    if (HomeFragment.socketConnectionListner!=null)
+                    {
+                        HomeFragment.socketConnectionListner.onSocketCallback(getApplicationContext(),"connect");
+                    }
                 }
 
                 public void onDisconnected(Socket socket, WebSocketFrame serverCloseFrame, WebSocketFrame clientCloseFrame, boolean closedByServer) {
                     System.out.println("Disconnected from end-point");
+                    if (HomeFragment.socketConnectionListner!=null)
+                    {
+                        HomeFragment.socketConnectionListner.onSocketCallback(getApplicationContext(),"Disconnect");
+                    }
                 }
 
                 public void onConnectError(Socket socket, WebSocketException exception) {

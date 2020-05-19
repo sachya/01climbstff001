@@ -56,4 +56,5 @@
     <color name="widget_labelled_spinner_error">@color/colorAccent</color>
     <color name="box">#50000000</color>
     <color name="bg_color_section">#F6F4F1</color>
+    <color name="black_transpent">#cc000000</color>
 </resources>

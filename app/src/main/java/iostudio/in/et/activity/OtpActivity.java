@@ -137,7 +137,8 @@ tv_terms.setOnClickListener(new View.OnClickListener() {
         if (NetworkUtil.checkNetworkStatus(context)) {
             String imei_no = Utility.getDeviceImei(context);
             String model_no = Utility.getModelNo();
-            Map<String, String> request = RetrofitRequest.otpRequest(phone, otp, imei_no, model_no);
+            String token =  IOPref.getInstance().getString(context, IOPref.PreferenceKey.FIREBASE_TOKEN, "");
+            Map<String, String> request = RetrofitRequest.otpRequest(phone, otp, imei_no, model_no,token);
             loginRequest(request);
 
         } else {
@@ -169,11 +170,13 @@ tv_terms.setOnClickListener(new View.OnClickListener() {
                             showMessage(jObjError.getString("message"));
 
                         } catch (Exception e) {
-                            showMessage(e.getMessage());
+                           // showMessage(e.getMessage());
+                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 } catch (Exception e) {
                     e.printStackTrace();
+                    showMessage(getString(R.string.something_went_wrong));
                 }
             }
 
@@ -207,6 +210,7 @@ tv_terms.setOnClickListener(new View.OnClickListener() {
 
                     } catch (Exception e) {
                         e.printStackTrace();
+                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
             }
@@ -221,8 +225,15 @@ tv_terms.setOnClickListener(new View.OnClickListener() {
             public void onFailure(Call call, Throwable t) {
                 super.onFailure(call, t);
                 Log.e("onFailure: ", " :" + t.getMessage());
+                showMessage(getString(R.string.something_went_wrong));
             }
         });
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        startActivity(new Intent(context, PhoneNumberActivity.class));
+        finish();
+    }
 }
