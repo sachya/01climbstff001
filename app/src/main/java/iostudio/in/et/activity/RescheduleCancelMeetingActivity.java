@@ -175,11 +175,13 @@ public class RescheduleCancelMeetingActivity extends BaseActivity implements Vie
                                 showMessage(jObjError.getString("message"));
                                 hideProgressDialogSimple();
                             } catch (Exception e) {
-                                showMessage(e.getMessage());
+                              //  showMessage(e.getMessage());
+                                showMessage(getString(R.string.something_went_wrong));
                             }
                         }
                     } catch (Exception e) {
-                        e.printStackTrace();
+                       // e.printStackTrace();
+                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -196,6 +198,7 @@ public class RescheduleCancelMeetingActivity extends BaseActivity implements Vie
 
                         } catch (Exception e) {
                             e.printStackTrace();
+                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -210,6 +213,7 @@ public class RescheduleCancelMeetingActivity extends BaseActivity implements Vie
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
+                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
 
@@ -245,7 +249,8 @@ public class RescheduleCancelMeetingActivity extends BaseActivity implements Vie
                                 showMessage(jObjError.getString("message"));
                                 hideProgressDialogSimple();
                             } catch (Exception e) {
-                                showMessage(e.getMessage());
+                               // showMessage(e.getMessage());
+                                showMessage(getString(R.string.something_went_wrong));
                             }
                         }
                     } catch (Exception e) {
@@ -266,6 +271,7 @@ public class RescheduleCancelMeetingActivity extends BaseActivity implements Vie
 
                         } catch (Exception e) {
                             e.printStackTrace();
+                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -280,6 +286,7 @@ public class RescheduleCancelMeetingActivity extends BaseActivity implements Vie
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
+                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
 

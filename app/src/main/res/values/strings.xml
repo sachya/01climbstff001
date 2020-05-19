@@ -78,7 +78,7 @@
     <string name="sms_sent">An SMS with 4-digit OTP has been \n sent to your mobile number</string>
     <string name="aggree_terms_n_conditions_policy">By signing in you agree to \n Terms of services and privacy policy</string>
     <string name="error_invalid_phone">Please enter valid phone number</string>
-    <string name="something_went_wrong">Something went wrong...</string>
+    <string name="something_went_wrong">cannot request data currently.</string>
     <string name="contact_lead">Contacts/ Leads</string>
     <string name="create_new">Create new</string>
     <string name="company_name">Company Name</string>
@@ -176,6 +176,7 @@
     <string name="contact_location">Contact Location</string>
     <string name="update">Update</string>
     <string name="delete">Delete</string>
+    <string name="delete_image">Delete Profile Image</string>
     <string name="add_note">Add Note</string>
     <string name="meeting_with">Meeting With</string>
     <string name="add_meeting_note">Add Meeting Note</string>

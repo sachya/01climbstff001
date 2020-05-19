@@ -1,12 +1,14 @@
 package iostudio.in.et.fragment;
 
 import android.Manifest;
+import android.app.NotificationManager;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationManager;
 import android.os.Bundle;
+import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -42,12 +44,16 @@ import iostudio.in.et.activity.CreateNewMeetingActivity1;
 import iostudio.in.et.activity.DashboardActivity;
 import iostudio.in.et.app.IOApp;
 import iostudio.in.et.pref.IOPref;
+import iostudio.in.et.retrofit.api.ApiClient;
 import iostudio.in.et.retrofit.api.AppRetrofitCallback;
 import iostudio.in.et.retrofit.request.RetrofitRequest;
+import iostudio.in.et.retrofit.response.CommonResponse;
 import iostudio.in.et.retrofit.response.Home;
 import iostudio.in.et.retrofit.response.HomeData;
 import iostudio.in.et.retrofit.response.IncomeExpense;
+import iostudio.in.et.utility.GPSConnectionListner;
 import iostudio.in.et.utility.NetworkUtil;
+import iostudio.in.et.utility.SocketConnectionListner;
 import iostudio.in.et.utility.UtilDate;
 import iostudio.in.et.utility.Utility;
 import iostudio.in.et.utility.Utils;
@@ -99,6 +105,9 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     LinearLayout ll_add_entry;
     LinearLayout ll_add_meeting;
     LinearLayout ll_meeting;
+
+    public static SocketConnectionListner socketConnectionListner;
+    public static GPSConnectionListner gpsConnectionListner;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -156,6 +165,23 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
         //getData();
         sendStatusRequest(status);
+
+        gpsConnectionListner = new GPSConnectionListner() {
+            @Override
+            public void onGPSCallback(Context mContext, String Socketstatus)
+            {
+                if (Socketstatus.equalsIgnoreCase("connect"))
+                {
+                   ontapClick();
+                }
+                else if (Socketstatus.equalsIgnoreCase("disconnect"))
+                {
+                    Utility.showMessage(context,"Something went wrong,Please try again");
+                    ll_status.setEnabled(true);
+                }
+
+            }
+        };
         return view;
     }
 
@@ -186,6 +212,39 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 if (!socket.isconnected()) {
                     socket.connectAsync();
                 }
+                else
+                {
+                    getActivity().runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            sendStatusRequest(status);
+                        }
+                    });
+                }
+
+
+                socketConnectionListner = new SocketConnectionListner() {
+                    @Override
+                    public void onSocketCallback(Context mContext, String Socketstatus)
+                    {
+                        if (Socketstatus.equalsIgnoreCase("connect"))
+                        {
+                            getActivity().runOnUiThread(new Runnable() {
+                                @Override
+                                public void run() {
+                                    sendStatusRequest(status);
+                                }
+                            });
+
+                        }
+                        else if (Socketstatus.equalsIgnoreCase("Disconnect"))
+                        {
+                            Utility.showMessage(context,"Something went wrong,Please try again");
+                          ll_status.setEnabled(true);
+                        }
+
+                    }
+                };
 
            /*     if (!checkPermissions()) {
                     requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSIONS_REQUEST_CODE);
@@ -260,40 +319,19 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 case R.id.ll_status:
                     if (NetworkUtil.checkNetworkStatus(context)) {
                         Log.e(TAG, " ll_status: clicked");
-                        /*boolean isOnDuty = Utility.getOnDuty(context);
-                        int status = 0;
-                        if (isOnDuty) {
-                            isOnDuty = false;
-                            status = 0;
-                        } else {
-                            isOnDuty = true;
-                            status = 1;
-                        }
-                        IOPref.getInstance().saveBoolean(context, IOPref.PreferenceKey.onDuty, isOnDuty);
-                        updateDutyUI(isOnDuty);
-                        setButtonsState(isOnDuty);
-                        sendStatusRequest(status);*/
+
                         if (!checkPermissions()) {
                             status = 0;
                             requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_PERMISSIONS_REQUEST_CODE);
                         } else {
                             if (mGoogleApiClient == null) {
                                 ((DashboardActivity) getActivity()).buildGoogleApiClient();
-                            } else if (!isGPSEnabled(context)) {
-                                ((DashboardActivity) getActivity()).askTurnGpsOn();
+                                ontapClick();
+                            } else
+                            {
+                               ontapClick();
                             }
-                            ((DashboardActivity) getActivity()).requestLocationUpdate();
-                            isOnDuty = Utility.getOnDuty(context);
-                             status = 0;
-                            if (isOnDuty) {
-                                isOnDuty = false;
-                                status = 0;
-                            } else {
-                                isOnDuty = true;
-                                status = 1;
-                            }
-                            ll_status.setEnabled(false);
-                            sendStatusRequest(status);
+
                         }
                     } else {
                         showAlertNoInternet();
@@ -303,6 +341,18 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+      /*  if (Utility.getOnDuty(context))
+        {
+            sendStatusRequest(0);
+        }*/
+
+     // sendStatusRequest(2);
+
     }
 
     @SuppressWarnings("unchecked")
@@ -328,6 +378,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         if (code.substring(0, 2).contains("50")) {
 
                             showMessage(getString(R.string.something_went_wrong));
+                            hideProgressDialogSimple();
 
                         } else if (!code.equalsIgnoreCase("200")) {
                             try {
@@ -336,11 +387,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                                 showMessage(jObjError.getString("message"));
 
                             } catch (Exception e) {
-                                showMessage(e.getMessage());
+                               // showMessage(e.getMessage());
+                                showMessage(getString(R.string.something_went_wrong));
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
+                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -353,14 +406,37 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
                             if (status != 2) {
                                 IOPref.getInstance().saveBoolean(context, IOPref.PreferenceKey.onDuty, isOnDuty);
+                                if (!Utility.getOnDuty(context))
+                                {
+                                    NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                                    notificationManager.cancelAll();
+
+                                }
+                                else
+                                {
+                                    ((DashboardActivity) getActivity()).displayDuty();
+                                }
+
                                 updateDutyUI(isOnDuty);
-                                setButtonsState(isOnDuty);
+                              //  setButtonsState(isOnDuty);
                             }
 
                             HomeData data = response.getData();
+                            if (!Utility.getOnDuty(context))
+                            {
+                                NotificationManager notificationManager = (NotificationManager) getActivity().getSystemService(Context.NOTIFICATION_SERVICE);
+                                notificationManager.cancelAll();
+
+                            }
+                            else
+                            {
+                                ((DashboardActivity) getActivity()).displayDuty();
+                            }
+
                             setHomeData(data);
                         } catch (Exception e) {
                             e.printStackTrace();
+                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -376,11 +452,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
+                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
         } catch (Exception e) {
             ll_status.setEnabled(true);
             e.printStackTrace();
+            showMessage(getString(R.string.something_went_wrong));
         }
     }
 
@@ -422,7 +500,8 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     tv_location.setText(data.getGeo().getLocation());
                 }
 
-
+                 // String token =  IOPref.getInstance().getString(getActivity(), IOPref.PreferenceKey.FIREBASE_TOKEN, "");
+                     //   updateDeviceIdToServer(token);
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -450,7 +529,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             Log.e(TAG, "Lost location permission." + unlikely);
         }
     }
-
+    int request_status;
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -464,16 +543,27 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                     }
                     ((DashboardActivity) getActivity()).requestLocationUpdate();
                     isOnDuty = Utility.getOnDuty(context);
-                    int status = 0;
+                     request_status = 0;
                     if (isOnDuty) {
                         isOnDuty = false;
                         status = 0;
                     } else {
                         isOnDuty = true;
                         status = 1;
+                        setButtonsState(isOnDuty);
                     }
                     ll_status.setEnabled(false);
-                    sendStatusRequest(status);
+
+                   /* final Handler handler = new Handler();
+                    handler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            sendStatusRequest(request_status);
+
+                        }
+                    }, 3000);*/
+
+                   // sendStatusRequest(status);
                 }
             } else {
                /* Snackbar.make(
@@ -483,6 +573,104 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
                         .show();*/
                showMessage(getString(R.string.permission_rationale));
             }
+        }
+    }
+
+
+    private void ontapClick()
+    {
+        if (isGPSEnabled(context))
+        {
+           // ((DashboardActivity) getActivity()).requestLocationUpdate();
+            isOnDuty = Utility.getOnDuty(context);
+            status = 0;
+            if (isOnDuty) {
+                Socket socket = IOApp.getInstance().getSocketInstance();
+                if (socket.isconnected()) {
+                    socket.disconnect();
+                }
+                ((DashboardActivity) getActivity()).removeLocationUpdate();
+                isOnDuty = false;
+                status = 0;
+                sendStatusRequest(status);
+            } else {
+
+                ((DashboardActivity) getActivity()).requestLocationUpdate();
+                isOnDuty = true;
+                status = 1;
+                setButtonsState(isOnDuty);
+            }
+            ll_status.setEnabled(false);
+            //  sendStatusRequest(status);
+        }
+        else
+        {
+            ((DashboardActivity) getActivity()).askTurnGpsOn();
+        }
+
+    }
+
+
+    private void updateDeviceIdToServer(String device_id) {
+        try {
+            Call<CommonResponse> call = ApiClient.getInstance().getApi().requestToUpdateFirebaseDeviceId(RetrofitRequest.getUpdateFirebaseDeviceIdRequest(device_id, Utility.getUserID(getActivity())));
+
+            call.enqueue(new AppRetrofitCallback<CommonResponse>(getActivity()) {
+                @Override
+                protected void onResponseMazkara(Call call, Response response) {
+                    try {
+                        String code = String.valueOf(response.code());
+
+                        if (code.substring(0, 2).contains("50")) {
+
+                            Log.i("MyFirebaseMsgService", getString(R.string.something_went_wrong));
+                            Utility.showMessage(getActivity(), getString(R.string.something_went_wrong));
+
+                        } else if (!code.equalsIgnoreCase("200")) {
+                            try {
+
+                                assert response.errorBody() != null;
+                                JSONObject jObjError = new JSONObject(response.errorBody().string());
+                                Utility.showMessage(getActivity(), jObjError.getString("message"));
+
+                            } catch (Exception e) {
+                                // Utility.showMessage(getApplicationContext(), e.getMessage());
+                                Utility.showMessage(getActivity(), getString(R.string.something_went_wrong));
+                            }
+                        }
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                @Override
+                protected void onResponseAppObject(Call call, CommonResponse response) {
+                    if (response != null) {
+                        try {
+                            if (!TextUtils.isEmpty(response.getMessage()))
+                                Utility.showMessage(getActivity(), response.getMessage());
+                            if (response.getCode().equalsIgnoreCase("1")) {
+
+                            }
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }
+
+                @Override
+                protected void common() {
+                }
+
+
+                @Override
+                public void onFailure(Call call, Throwable t) {
+                    super.onFailure(call, t);
+                    Log.e("onFailure: ", " :" + t.getMessage());
+                }
+            });
+        } catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

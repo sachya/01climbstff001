@@ -174,28 +174,137 @@
                 android:textSize="@dimen/medium_text_size"
                 android:textStyle="bold" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/iv_attachment"
-                android:layout_width="@dimen/list_item_interest_width_height"
-                android:layout_height="@dimen/list_item_interest_width_height"
-                android:src="@drawable/ic_add_box"/>
+              <LinearLayout
+                  android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:gravity="center"
+                  android:orientation="horizontal">
+
+
+                  <FrameLayout
+
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_gravity="center"
+                      >
+
+                      <androidx.appcompat.widget.AppCompatImageView
+                          android:id="@+id/iv_attachment"
+                          android:src="@drawable/ic_add_box"
+                          android:layout_height="@dimen/list_item_interest_width_height"
+                          android:layout_gravity="center"
+                          android:scaleType="centerCrop"
+                          android:layout_width="@dimen/list_item_interest_width_height"/>
+
+                      <androidx.appcompat.widget.AppCompatImageView
+                          android:id="@+id/iv_edit"
+                          android:layout_height="40dp"
+                          android:layout_width="35dp"
+                          android:src="@drawable/ic_menu_camera"
+                          android:tint="@color/colorAccent"
+
+                          android:visibility="gone"
+                          android:layout_gravity="bottom|right"/>
+
+
+                  </FrameLayout>
+
+                  <androidx.appcompat.widget.AppCompatImageView
+
+                      android:layout_width="@dimen/list_item_interest_width_height"
+                      android:layout_height="@dimen/list_item_interest_width_height"
+                      android:src="@drawable/ic_add_box"
+                      android:visibility="gone"/>
+
+                  <LinearLayout
+                      android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:layout_marginTop="@dimen/twenty_dp"
+                      android:gravity="bottom"
+                      android:orientation="vertical">
+
+                      <androidx.appcompat.widget.AppCompatImageView
+
+                          android:layout_width="@dimen/twenty_dp"
+                          android:layout_height="@dimen/twenty_dp"
+                          android:visibility="gone"
+                          android:src="@drawable/ic_edit" />
+
+                      <androidx.appcompat.widget.AppCompatImageView
+
+                          android:layout_width="@dimen/twenty_dp"
+                          android:layout_marginTop="10dp"
+                          android:layout_height="@dimen/twenty_dp"
+                          android:src="@drawable/delete"
+                          android:visibility="gone"/>
+                  </LinearLayout>
 
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/btnSubmit"
-                android:layout_width="wrap_content"
-                android:layout_height="@dimen/fifty_five_dp"
-                android:layout_marginTop="@dimen/twenty_dp"
-                android:layout_marginBottom="@dimen/five_dp"
-                android:letterSpacing="0"
-                android:minWidth="@dimen/one_fifty_dp"
-                android:text="@string/submit"
-                android:textAllCaps="false"
-                android:textSize="@dimen/medium_text_size"
-                android:textStyle="bold"
-                app:cornerRadius="@dimen/twenty_dp"
-                tools:ignore="UnusedAttribute" />
+
+              </LinearLayout>
+
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal">
+
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Attachment"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/medium_text_size"
+                    android:textAllCaps="false"
+                    android:letterSpacing="0"
+                    android:minHeight="@dimen/fifty_dp"
+                    android:id="@+id/btn_update"
+                    app:backgroundTint="@color/md_blue_500"
+                    app:cornerRadius="@dimen/fifty_dp"
+                    android:visibility="gone"
+                    android:layout_marginTop="@dimen/twenty_dp"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnSubmit"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/fifty_five_dp"
+                    android:layout_marginTop="@dimen/twenty_dp"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    android:letterSpacing="0"
+                    android:minWidth="@dimen/one_fifty_dp"
+                    android:text="@string/submit"
+                    android:textAllCaps="false"
+                    android:textSize="@dimen/medium_text_size"
+                    android:textStyle="bold"
+                    app:cornerRadius="@dimen/twenty_dp"
+
+                    tools:ignore="UnusedAttribute" />
+
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/iv_delete"
+                    android:layout_width="wrap_content"
+                    android:layout_height="@dimen/fifty_five_dp"
+                    android:layout_marginTop="@dimen/twenty_dp"
+                    android:layout_marginBottom="@dimen/five_dp"
+                    android:letterSpacing="0"
+                    android:minWidth="@dimen/one_fifty_dp"
+                    android:text="Delete Attachment"
+                    android:textAllCaps="false"
+                    app:backgroundTint="@color/md_red_400"
+                    android:layout_marginLeft="5dp"
+                    android:textSize="@dimen/medium_text_size"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:cornerRadius="@dimen/twenty_dp"
+                    tools:ignore="UnusedAttribute" />
+            </LinearLayout>
+
 
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
