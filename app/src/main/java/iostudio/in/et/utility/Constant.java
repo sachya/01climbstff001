@@ -170,17 +170,12 @@ public class Constant {
     public interface API {
 
         String BASEURL_API = "https://apis.climbstaff.com";
-        String BASEURL2_API = "https://climbstaff.com/";
 
         String APPLY_LEAVE = "/attendance/leave-grant";
         String LOGIN = "/user/login";
         String LOGIN_VERIFY = "/user/login-verify";
         String CLIENT_ADD = "/client/add";
         String ACCOUNT_ADD = "/account/add";
-        String PROFILE_ADD = "/image/user-profile";
-        String ACCOUNT_IMAGE_ADD = "/image/account-entry";
-        String DELETE_IMAGE_PROFILE = "/image/user-profile-remove";
-        String DELETE_Account_IMAGE_PROFILE = "/image/account-image-remove";
         String ACCOUNT_UPDATE= "/account/update";
         String CLIENT_UPDATE = "/client/update";
         String CLIENT_TYPE = "/client/type/{userID}";

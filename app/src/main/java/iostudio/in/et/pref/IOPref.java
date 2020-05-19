@@ -120,7 +120,6 @@ public class IOPref {
         String NETWORK_STRENGTH = "networkStrength";
         String offlineLocation = "offlinelocation";
         String profileImage = "profileImage";
-        String companyImage = "companyImage";
         String designation = "designation";
         String name = "name";
         String PIN = "PIN";

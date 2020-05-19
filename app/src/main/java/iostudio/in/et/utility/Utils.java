@@ -40,6 +40,7 @@ public class Utils {
         return PreferenceManager.getDefaultSharedPreferences(context)
                 .getBoolean(KEY_REQUESTING_LOCATION_UPDATES, false);
     }
+
     /**
      * Stores the location updates state in SharedPreferences.
      * @param requestingLocationUpdates The location updates state.

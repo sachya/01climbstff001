@@ -288,7 +288,7 @@ public class LocationUpdatesService extends Service {
     /**
      * Returns the {@link NotificationCompat} used as part of the foreground service.
      */
-    public Notification getNotification() {
+    private Notification getNotification() {
         Intent intent = new Intent(this, LocationUpdatesService.class);
 
         CharSequence text = Utils.getLocationText(mLocation);
@@ -381,24 +381,12 @@ public class LocationUpdatesService extends Service {
         sendBroadcast(intent);
 
         // Update notification content if running as a foreground service.
-
-        if (Utility.getOnDuty(getApplicationContext()))
-        {
-            mNotificationManager.notify(NOTIFICATION_ID, getNotification());
-
-        }
-        else
-        {
-            Log.e(TAG, " serviceIsRunningInForeground not called");
-            NotificationManager notificationManager = (NotificationManager) getApplicationContext().getSystemService(Context.NOTIFICATION_SERVICE);
-            notificationManager.cancelAll();
-        }
-        /*if (serviceIsRunningInForeground(this)) {
+        if (serviceIsRunningInForeground(this)) {
             Log.e(TAG, " serviceIsRunningInForeground called");
             mNotificationManager.notify(NOTIFICATION_ID, getNotification());
         } else {
             Log.e(TAG, " serviceIsRunningInForeground not called");
-        }*/
+        }
 
 
     }

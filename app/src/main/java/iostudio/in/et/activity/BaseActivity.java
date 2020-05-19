@@ -1,7 +1,6 @@
 package iostudio.in.et.activity;
 
 import android.Manifest;
-import android.app.ActivityManager;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -24,7 +23,6 @@ import org.json.JSONObject;
 
 import java.text.DecimalFormat;
 import java.util.Collections;
-import java.util.List;
 import java.util.Map;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -41,7 +39,6 @@ import iostudio.in.et.R;
 import iostudio.in.et.alert.Alert;
 import iostudio.in.et.pref.IOPref;
 import iostudio.in.et.retrofit.api.ApiClient;
-import iostudio.in.et.retrofit.api.ApiClient_image;
 import iostudio.in.et.utility.Utility;
 import iostudio.in.et.utility.Utils;
 import okhttp3.RequestBody;
@@ -56,7 +53,6 @@ abstract public class BaseActivity extends AppCompatActivity {
     private static final String TAG = "BaseActivity";
     public ProgressDialog progressDialog;
     public ApiClient apiClient;
-    public ApiClient_image apiClient_image;
     Toolbar toolbar;
     String className;
     TextView textView_toolbar_title;
@@ -89,7 +85,6 @@ abstract public class BaseActivity extends AppCompatActivity {
         className = this.getClass().getSimpleName();
         decimalFormat = new DecimalFormat("#.##");
         apiClient = ApiClient.getInstance();
-        apiClient_image = ApiClient_image.getInstance();
     }
 
     public void initBase() {
@@ -132,25 +127,15 @@ abstract public class BaseActivity extends AppCompatActivity {
                 }
             }
         }
-
-
     }
 
     @Override
     protected void onRestart() {
         super.onRestart();
         Log.i("BA >>", "*** onRestart *** isPinValidated >"+isPinValidated);
-
-        /*if (!isAppOpenInForeBackGround(getApplicationContext())) {
-            if (!isPinValidated && IOPref.getInstance().getString(this, IOPref.PreferenceKey.PIN, "").length() > 2) {
-                startActivity(new Intent(this, EnterPinActivity.class));
-            }
+        if (!isPinValidated && IOPref.getInstance().getString(this, IOPref.PreferenceKey.PIN, "").length() > 2) {
+            startActivity(new Intent(this, EnterPinActivity.class));
         }
-        else
-        {
-
-        }*/
-
 
     }
 
@@ -175,12 +160,6 @@ abstract public class BaseActivity extends AppCompatActivity {
             isAnyActivityRunning = false;
         else
             isAnyActivityRunning = true;
-
-        if (!isAppOpenInForeBackGround(getApplicationContext())) {
-          //  if (!isPinValidated && IOPref.getInstance().getString(this, IOPref.PreferenceKey.PIN, "").length() > 2) {
-                startActivity(new Intent(this, EnterPinActivity.class));
-         //   }
-        }
     }
 
     @Override
@@ -518,24 +497,4 @@ abstract public class BaseActivity extends AppCompatActivity {
                     REQUEST_PERMISSIONS_REQUEST_CODE);
         }
     }
-
-
-    /**
-     * method to check app open or closed
-     */
-    public boolean isAppOpenInForeBackGround(Context context) {
-        boolean isAppOpen = false;
-        ActivityManager am = (ActivityManager) context
-                .getSystemService(Context.ACTIVITY_SERVICE);
-        List<ActivityManager.RunningTaskInfo> tasks = am.getRunningTasks(am
-                .getRunningAppProcesses().size());
-        for (ActivityManager.RunningTaskInfo runningTaskInfo : tasks) {
-            if (runningTaskInfo.topActivity.getPackageName().equals(context.getPackageName()))
-                isAppOpen = true;
-            break;
-        }
-        return isAppOpen;
-    }
-
-
 }

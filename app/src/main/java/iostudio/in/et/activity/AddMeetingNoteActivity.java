@@ -171,12 +171,10 @@ public class AddMeetingNoteActivity extends BaseActivity implements View.OnClick
                                     hideProgressDialogSimple();
                                 } catch (Exception e) {
                                     showMessage(e.getMessage());
-                                    showMessage(getString(R.string.something_went_wrong));
                                 }
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
 
@@ -195,7 +193,6 @@ public class AddMeetingNoteActivity extends BaseActivity implements View.OnClick
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                showMessage(getString(R.string.something_went_wrong));
                             }
 
                         }
@@ -211,7 +208,6 @@ public class AddMeetingNoteActivity extends BaseActivity implements View.OnClick
                     public void onFailure(Call call, Throwable t) {
                         super.onFailure(call, t);
                         Log.e("onFailure: ", " :" + t.getMessage());
-                        showMessage(getString(R.string.something_went_wrong));
                     }
                 });
 
@@ -219,8 +215,7 @@ public class AddMeetingNoteActivity extends BaseActivity implements View.OnClick
                 showAlertNoInternet();
             }
         } catch (Exception e) {
-            e.printStackTrace();showMessage(getString(R.string.something_went_wrong));
-
+            e.printStackTrace();
         }
     }
 
@@ -281,13 +276,11 @@ public class AddMeetingNoteActivity extends BaseActivity implements View.OnClick
                                 showMessage(jObjError.getString("message"));
                                 hideProgressDialogSimple();
                             } catch (Exception e) {
-                                //showMessage(e.getMessage());
-                                showMessage(getString(R.string.something_went_wrong));
+                                showMessage(e.getMessage());
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -304,7 +297,6 @@ public class AddMeetingNoteActivity extends BaseActivity implements View.OnClick
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -319,7 +311,6 @@ public class AddMeetingNoteActivity extends BaseActivity implements View.OnClick
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
-                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
 

@@ -148,7 +148,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         // TODO: Implement this method to send token to your app server.
         if (!token.equals(IOPref.getInstance().getString(getApplicationContext(), IOPref.PreferenceKey.FIREBASE_TOKEN, ""))) {
             IOPref.getInstance().saveString(getApplicationContext(), IOPref.PreferenceKey.FIREBASE_TOKEN, token);
-         //   updateDeviceIdToServer(token);
+            updateDeviceIdToServer(token);
         }
     }
 
@@ -211,8 +211,7 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                                 Utility.showMessage(getApplicationContext(), jObjError.getString("message"));
 
                             } catch (Exception e) {
-                               // Utility.showMessage(getApplicationContext(), e.getMessage());
-                                Utility.showMessage(getApplicationContext(), getString(R.string.something_went_wrong));
+                                Utility.showMessage(getApplicationContext(), e.getMessage());
                             }
                         }
                     } catch (Exception e) {

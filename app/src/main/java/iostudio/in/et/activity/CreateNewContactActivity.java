@@ -215,13 +215,11 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
                                 showMessage(jObjError.getString("message"));
 
                             } catch (Exception e) {
-                                //showMessage(e.getMessage());
-                                showMessage(getString(R.string.something_went_wrong));
+                                showMessage(e.getMessage());
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -236,7 +234,6 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -251,12 +248,10 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
-                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(getString(R.string.something_went_wrong));
         }
     }
 
@@ -286,12 +281,10 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
 
                             } catch (Exception e) {
                                 showMessage(e.getMessage());
-                                showMessage(getString(R.string.something_went_wrong));
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -307,7 +300,6 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
                             }
                         } catch (Exception e) {
                             e.printStackTrace();
-                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -322,12 +314,10 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
-                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(getString(R.string.something_went_wrong));
         }
     }
 
@@ -402,13 +392,11 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
                                 showMessage(jObjError.getString("message"));
 
                             } catch (Exception e) {
-                              //  showMessage(e.getMessage());
-                                showMessage(getString(R.string.something_went_wrong));
+                                showMessage(e.getMessage());
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -439,8 +427,7 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
                             }
 
                         } catch (Exception e) {
-                          //  e.printStackTrace();
-                            showMessage(getString(R.string.something_went_wrong));
+                            e.printStackTrace();
                         }
                     }
                 }
@@ -455,12 +442,10 @@ public class CreateNewContactActivity extends BaseActivity implements View.OnCli
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
-                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(getString(R.string.something_went_wrong));
         }
     }
 

@@ -7,7 +7,6 @@ public class ProfileData {
     private String address;
     private String city;
     private String company;
-    private String company_id;
     private String image;
     private String userName;
     private String email;
@@ -100,13 +99,5 @@ public class ProfileData {
 
     public void setImage(String image) {
         this.image = image;
-    }
-
-    public String getCompany_id() {
-        return company_id;
-    }
-
-    public void setCompany_id(String company_id) {
-        this.company_id = company_id;
     }
 }

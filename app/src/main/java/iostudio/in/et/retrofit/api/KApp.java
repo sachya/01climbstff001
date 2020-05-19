@@ -1,12 +1,9 @@
 package iostudio.in.et.retrofit.api;
 
 
-import com.google.gson.JsonObject;
-
 import java.util.Map;
 
 import iostudio.in.et.retrofit.response.Account;
-import iostudio.in.et.retrofit.response.AccountEntryData;
 import iostudio.in.et.retrofit.response.AccountInfo;
 import iostudio.in.et.retrofit.response.Client;
 import iostudio.in.et.retrofit.response.ClientInfo;
@@ -73,7 +70,7 @@ public interface KApp<T> {
 
     @FormUrlEncoded
     @POST(Constant.API.ACCOUNT_ADD)
-    Call<AccountEntryData> requestAccountEntryAdd(@FieldMap Map<String, String> request);
+    Call<CommonResponse> requestAccountEntryAdd(@FieldMap Map<String, String> request);
 
     @FormUrlEncoded
     @POST(Constant.API.ACCOUNT_UPDATE)
@@ -214,20 +211,5 @@ public interface KApp<T> {
     @GET()
     Call<Contractor> getContactorData(@Url String url, @QueryMap Map<String, String> request);
 
-    @Multipart
-    @POST(Constant.API.PROFILE_ADD)
-    Call<CommonResponse> requestAPROFILE_ADD(@Part MultipartBody.Part file, @Part("user_id") RequestBody userId, @Part("company_id") RequestBody company_id);
-
-
-    @GET(Constant.API.DELETE_IMAGE_PROFILE)
-    Call<CommonResponse> deleteImage(@QueryMap Map<String, String> request);
-
-
-    @GET(Constant.API.DELETE_Account_IMAGE_PROFILE)
-    Call<CommonResponse> deleteAccountEntryImage(@QueryMap Map<String, String> request);
-
-      @Multipart
-    @POST(Constant.API.ACCOUNT_IMAGE_ADD)
-    Call<CommonResponse> requestAcoountImage(@Part MultipartBody.Part file, @Part("user_id") RequestBody userId, @Part("company_id") RequestBody company_id,@Part("entry_id") RequestBody entry_id );
 
 }

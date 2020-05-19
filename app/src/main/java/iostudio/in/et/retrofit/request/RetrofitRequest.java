@@ -124,7 +124,6 @@ public class RetrofitRequest {
     private static final String ACTION_client_type = "client_type";
     private static final String ACTION_created_by = "created_by";
     private static final String ACTION_model_no = "model_no";
-
     private static final String ACTION_leave_reason = "leave_reason";
     private static final String ACTION_leave_start = "leave_start";
     private static final String ACTION_leave_end = "leave_end";
@@ -151,8 +150,6 @@ public class RetrofitRequest {
     private static final String ACTION_updation_date = "updation_date";
     private static final String ACTION_address = "address";
     private static final String ACTION_accountID = "account_id";
-    private static final String ACTION_companyID = "company_id";
-    private static final String ACTION_ENTRYID = "entry_id";
 
 
     /**
@@ -602,13 +599,12 @@ public class RetrofitRequest {
     }
 
     public static Map<String, String> otpRequest(final String userName,
-                                                 final String otp, String imei_no, String model_no,String device_id) {
+                                                 final String otp, String imei_no, String model_no) {
         Map<String, String> params = new HashMap<String, String>();
         params.put(ACTION_MOBILE_NO, userName);
         params.put(ACTION_otp, otp);
         params.put(ACTION_imei_no, imei_no);
         params.put(ACTION_model_no, model_no);
-        params.put(ACTION_device_id, device_id);
         return params;
     }
 
@@ -1153,26 +1149,6 @@ public class RetrofitRequest {
         params.put(ACTION_VOUCER_CSV, voucherServiceIDCSV);
         params.put(ACTION_FABOGO_RATING, fabogoRating);
         params.put(ACTION_ZONEID, zoneID);
-        return params;
-    }
-
-
-
-    public static Map<String, String> deleteprofileImageRequest(final String userID, final String company_id) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put(ACTION_user_id, userID);
-        params.put(ACTION_companyID, company_id);
-
-        return params;
-    }
-
-
-    public static Map<String, String> deleteaccountprofileImageRequest(final String userID, final String company_id,String entry_id) {
-        Map<String, String> params = new HashMap<String, String>();
-        params.put(ACTION_user_id, userID);
-        params.put(ACTION_companyID, company_id);
-        params.put(ACTION_ENTRYID, entry_id);
-
         return params;
     }
 }

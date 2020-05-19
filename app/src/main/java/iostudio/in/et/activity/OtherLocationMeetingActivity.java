@@ -165,13 +165,11 @@ public class OtherLocationMeetingActivity extends BaseActivity implements View.O
                                 showMessage(jObjError.getString("message"));
 
                             } catch (Exception e) {
-                            //    showMessage(e.getMessage());
-                                showMessage(getString(R.string.something_went_wrong));
+                                showMessage(e.getMessage());
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -203,14 +201,12 @@ public class OtherLocationMeetingActivity extends BaseActivity implements View.O
 
                             } else {
                                 if (!TextUtils.isEmpty(response.getMessage()))
-                                  //  showMessage(response.getMessage());
-                                showMessage(getString(R.string.something_went_wrong));
+                                    showMessage(response.getMessage());
 
                             }
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -225,12 +221,10 @@ public class OtherLocationMeetingActivity extends BaseActivity implements View.O
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
-                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(getString(R.string.something_went_wrong));
         }
     }
 
@@ -268,13 +262,11 @@ public class OtherLocationMeetingActivity extends BaseActivity implements View.O
                                 showMessage(jObjError.getString("message"));
                                 hideProgressDialogSimple();
                             } catch (Exception e) {
-                                //showMessage(e.getMessage());
-                                showMessage(getString(R.string.something_went_wrong));
+                                showMessage(e.getMessage());
                             }
                         }
                     } catch (Exception e) {
                         e.printStackTrace();
-                        showMessage(getString(R.string.something_went_wrong));
                     }
                 }
 
@@ -292,7 +284,6 @@ public class OtherLocationMeetingActivity extends BaseActivity implements View.O
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -307,7 +298,6 @@ public class OtherLocationMeetingActivity extends BaseActivity implements View.O
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
-                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
 

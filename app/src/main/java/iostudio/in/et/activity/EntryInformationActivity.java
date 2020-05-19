@@ -1,39 +1,28 @@
 package iostudio.in.et.activity;
 
-import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Handler;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
-import android.view.Window;
-import android.widget.ImageView;
 
 import androidx.annotation.Nullable;
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.widget.AppCompatEditText;
-import androidx.appcompat.widget.AppCompatImageView;
 import androidx.appcompat.widget.AppCompatTextView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
-import com.squareup.picasso.MemoryPolicy;
-import com.squareup.picasso.NetworkPolicy;
-import com.squareup.picasso.Picasso;
 
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.Map;
 
-import androidx.viewpager.widget.ViewPager;
 import iostudio.in.et.R;
 import iostudio.in.et.adapter.MeetingInformationRecyclerAdapter;
 import iostudio.in.et.alert.Alert;
-import iostudio.in.et.pref.IOPref;
 import iostudio.in.et.retrofit.api.AppRetrofitCallback;
 import iostudio.in.et.retrofit.request.RetrofitRequest;
 import iostudio.in.et.retrofit.response.AccountData;
@@ -61,7 +50,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
     AppCompatTextView tv_entry_type;
     AppCompatTextView tv_entry_name;
     AppCompatTextView tv_entry_cost;
-    AppCompatImageView iv_attachment;
 
     private AccountData accountData;
     private String ID;
@@ -85,7 +73,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
         tv_entry_type = findViewById(R.id.tv_entry_type);
         tv_entry_name = findViewById(R.id.tv_entry_name);
         tv_entry_cost = findViewById(R.id.tv_entry_cost);
-        iv_attachment = findViewById(R.id.iv_attachment);
         et_add_meeting_note = findViewById(R.id.et_add_meeting_note);
 
     }
@@ -127,7 +114,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
         btn_update.setOnClickListener(this);
         btn_delete.setOnClickListener(this);
         btn_add_note.setOnClickListener(this);
-        iv_attachment.setOnClickListener(this);
     }
 
     @Override
@@ -160,13 +146,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
                     intent.putExtra(Constant.INTENT.ACCOUNT_OBJECT, accountData);
                     intent.setClass(context, CreateNewExpenseActivity.class);
                     startActivityForResult(intent, Constant.INTENT_RESULT.CREATE_EXPENSE);
-                    break;
-
-                case R.id.iv_attachment:
-
-                    String companyid = IOPref.getInstance().getString(context, IOPref.PreferenceKey.companyImage, "");
-                    String attachment_image = "https://climbstaff.com/uploads/company/"+companyid+"/"+Utility.getUserID(context)+"/accounts/"+accountData.getAccount_id()+"/image.jpg";
-                    getMultipleimages(attachment_image);
                     break;
             }
         } catch (Exception e) {
@@ -206,8 +185,7 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
                                 showMessage(jObjError.getString("message"));
                                 hideProgressDialogSimple();
                             } catch (Exception e) {
-                                //showMessage(e.getMessage());
-                                showMessage(getString(R.string.something_went_wrong));
+                                showMessage(e.getMessage());
                             }
                         }
                     } catch (Exception e) {
@@ -229,7 +207,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
 
                         } catch (Exception e) {
                             e.printStackTrace();
-                            showMessage(getString(R.string.something_went_wrong));
                         }
                     }
                 }
@@ -244,7 +221,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
-                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
 
@@ -318,7 +294,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
                 public void onFailure(Call call, Throwable t) {
                     super.onFailure(call, t);
                     Log.e("onFailure: ", " :" + t.getMessage());
-                    showMessage(getString(R.string.something_went_wrong));
                 }
             });
 
@@ -363,7 +338,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
                                     hideProgressDialogSimple();
                                 } catch (Exception e) {
                                     showMessage(e.getMessage());
-                                    showMessage(getString(R.string.something_went_wrong));
                                 }
                             }
                         } catch (Exception e) {
@@ -381,40 +355,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
                                 if (response.getCode().equalsIgnoreCase("1")) {
                                     if (response.getData() != null) {
                                         accountData = response.getData();
-
-
-
-                                        if (accountData.getImage().equalsIgnoreCase("1"))
-                                        {
-                                            String companyid = IOPref.getInstance().getString(context, IOPref.PreferenceKey.companyImage, "");
-                                            String attachment_image = "https://climbstaff.com/uploads/company/"+companyid+"/"+Utility.getUserID(context)+"/accounts/"+accountData.getAccount_id()+"/image.jpg";
-                                            Picasso.get().invalidate(attachment_image);
-                                            Picasso.get().load(attachment_image)
-                                                    .placeholder(R.drawable.ic_add_box)
-                                                    .networkPolicy(NetworkPolicy.NO_CACHE)
-                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                    .into(iv_attachment);
-
-
-
-                                        }
-                                        else if (accountData.getImage().equalsIgnoreCase("0"))
-                                        {
-                                            iv_attachment.setVisibility(View.GONE);
-                                            /*Picasso.get().load(R.drawable.ic_add_box)
-                                                    .placeholder(R.drawable.ic_add_box)
-                                                    .networkPolicy(NetworkPolicy.NO_CACHE)
-                                                    .memoryPolicy(MemoryPolicy.NO_CACHE)
-                                                    .into(iv_attachment);
-
-                                            iv_attachment.setEnabled(false);*/
-
-
-
-                                        }
-
-
-
                                         if (!TextUtils.isEmpty(accountData.getName())) {
                                             tv_entry_name.setText(accountData.getName());
                                             tv_entry_name.setVisibility(View.VISIBLE);
@@ -450,7 +390,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
                                 }
                             } catch (Exception e) {
                                 e.printStackTrace();
-                                showMessage(getString(R.string.something_went_wrong));
                             }
 
                         }
@@ -466,7 +405,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
                     public void onFailure(Call call, Throwable t) {
                         super.onFailure(call, t);
                         Log.e("onFailure: ", " :" + t.getMessage());
-                        showMessage(getString(R.string.something_went_wrong));
                     }
                 });
 
@@ -475,7 +413,6 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
             }
         } catch (Exception e) {
             e.printStackTrace();
-            showMessage(getString(R.string.something_went_wrong));
         }
     }
 
@@ -492,50 +429,5 @@ public class EntryInformationActivity extends BaseActivity implements View.OnCli
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
-
-
-
-    int NUM_PAGES_RETURN_imagedisplay = 0;
-    int currentPage_RETURN_imagedisplay = 0;
-    public void getMultipleimages(String images)
-    {
-
-        final Dialog dialog1 = new Dialog(context,R.style.DialogCustomTheme);
-        dialog1.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog1.setCancelable(true);
-        dialog1.setCanceledOnTouchOutside(true);
-        dialog1.setContentView(R.layout.dialog_display_images);
-
-        int width = getWindowManager().getDefaultDisplay()
-                .getWidth();
-        dialog1.getWindow().setLayout(width-20, ActionBar.LayoutParams.MATCH_PARENT);
-
-
-        AppCompatImageView iv_cross_provider = (AppCompatImageView) dialog1.findViewById(R.id.iv_cross_provider);
-        AppCompatImageView iv_fullimage = (AppCompatImageView) dialog1.findViewById(R.id.iv_fullimage);
-
-        Picasso.get().load(images)
-                .placeholder(R.drawable.ic_add_box)
-                .networkPolicy(NetworkPolicy.NO_CACHE)
-                .memoryPolicy(MemoryPolicy.NO_CACHE)
-                .into(iv_fullimage);
-
-
-
-
-
-        iv_cross_provider.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog1.dismiss();
-            }
-        });
-
-
-
-
-        dialog1.show();
-
     }
 }
