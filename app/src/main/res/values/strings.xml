@@ -78,7 +78,7 @@
     <string name="sms_sent">An SMS with 4-digit OTP has been \n sent to your mobile number</string>
     <string name="aggree_terms_n_conditions_policy">By signing in you agree to \n Terms of services and privacy policy</string>
     <string name="error_invalid_phone">Please enter valid phone number</string>
-    <string name="something_went_wrong">cannot request data currently.</string>
+    <string name="something_went_wrong">Data request is invalid</string>
     <string name="contact_lead">Contacts/ Leads</string>
     <string name="create_new">Create new</string>
     <string name="company_name">Company Name</string>
@@ -131,7 +131,7 @@
     <string name="enable_gps">You location is turned off, You are now on duty Turn location On</string>
 
 
-    <string name="launch_activity">Open Climbstaff App</string>
+    <string name="launch_activity">Open Climbstaff</string>
     <string name="location_unknown">Location unknown</string>
     <string name="location_updates_label">Location Updates</string>
 
@@ -145,7 +145,7 @@
     <string name="on_duty">ON Duty</string>
     <string name="app_desc">Efficient Employee Manager</string>
     <string name="welcome">Welcome to Climbstaff</string>
-    <string name="welcome_desc">Please provide your phone number to authorize \nyou. A confirmation SMS will be sent to your\nphone number</string>
+    <string name="welcome_desc">Please provide your phone number to authorize \nyou. A verification SMS And Email will be sent.</string>
     <string name="terms_desc">By continuing, you are indicating that you agree to the</string>
     <string name="company_name_title">Sweetcorn Developers</string>
     <string name="verification">Verification</string>
@@ -222,7 +222,7 @@
     <string name="designation">Designation</string>
     <string name="city">City</string>
     <string name="company">Company</string>
-    <string name="remember_to_add">Remember to add allowence everyday</string>
+    <string name="remember_to_add">Remember to add allowance everyday</string>
     <string name="total_income">Total Income</string>
     <string name="todays_expense">Today\'s Expense</string>
     <string name="todays_income">Today\'s Income</string>
@@ -240,7 +240,7 @@
     <string name="meeting_address">Meeting Address</string>
     <string name="error_pls_add_note">Please write note before adding it.</string>
     <string name="are_you_sure">Are you sure?</string>
-    <string name="add_to_meeting">Add to meeting</string>
+    <string name="add_to_meeting">Set Meeting</string>
     <string name="error_entry_name">Please write entry name</string>
     <string name="error_select_entry_type">Select Entry Type</string>
     <string name="error_entry_cost">Please Write Entry Cost</string>
@@ -262,7 +262,7 @@
     <string name="add_contact_to_meeting">Add Contact To Meeting</string>
     <string name="cancel_meeting_desc">Do you really want to cancel meeting?</string>
     <string name="reschedule_meeting_desc">Do you really want to reschedule meeting?</string>
-    <string name="set_pin_title">Secure Your App</string>
+    <string name="set_pin_title">Secure Your Climbstaff</string>
     <string name="set_pin_caption">This pin will be required every time you access this application</string>
     <string name="set_pin_enter_4_digit">Enter 4 digit PIN</string>
     <string name="set_pin_re_enter">Re-enter pin</string>

@@ -77,7 +77,7 @@ public class OtpActivity extends BaseActivity {
         };
 
         ss.setSpan(span1, 0, 18, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
-        ss.setSpan(span2, 21, 34, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
+        ss.setSpan(span2, 21, 35, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE);
 
         tv_terms.setText(ss);
         tv_terms.setMovementMethod(LinkMovementMethod.getInstance());
